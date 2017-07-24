@@ -2,20 +2,68 @@ module.exports = function(app) {
 
     var http = require("http");
 
-	app.get('/', function(req, res) {
-		res.sendfile('./public/views/index.html');
-	});
+    var mongoose       = require('mongoose');
 
-	app.route("/forumDetailsHeader").get(function (req, res) {
-	    res.setHeader('Content-Type', 'application/json');
-	    res.send(JSON.stringify({'header' : 'Forum Details'}))
+// configuration ===========================================
+    var mongoDB = 'mongodb://root:root@localhost:27017/dms';
+    mongoose.connect(mongoDB);
+
+    var db = mongoose.connection;
+
+    db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+
+    db.once('open', function () {
 
     });
 
-    app.route("/announcementsHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'Announcements'}))
+    var tasksSchema = new mongoose.Schema({
+        _id: String,
+        What: String,
+        Who: String,
+        When: Date
+    });
 
+    var announcementSchema = new mongoose.Schema({
+        _id: String,
+        Announcement: String
+    });
+
+    tasksSchema.set('collection', 'task');
+
+    announcementSchema.set('collection', 'announcement');
+
+    var Task = db.model('task', tasksSchema);
+    var Announcement = db.model('ammouncement', announcementSchema);
+
+	app.route("/forumDetailsHeader").get(function (req, res) {
+
+        Task.findOne({}, function (err, task) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(task.What);
+                //callback("", task);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : task.What}))
+            }
+        });
+    });
+
+    app.route("/announcementsHeader").get(function (req, res) {
+
+        Announcement.findOne({}, function (err, announcement) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(announcement.Announcement);
+                //callback("", tasks);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : announcement.Announcement}))
+            }
+        });
     });
 
     app.route("/barometerHeader").get(function (req, res) {
