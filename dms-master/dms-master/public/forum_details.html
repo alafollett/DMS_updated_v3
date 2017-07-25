@@ -1,5 +1,8 @@
 <div data-ng-controller="forumDetailsCtrl">
     <h3 data-ng-model="header">{{header}}</h3>
+    <h5 data-ng-model="What">{{What}}</h5>
+    <h5 data-ng-model="Who">{{Who}}</h5>
+    <h5 data-ng-model="When">{{When}}</h5>
     <div ng-repeat="line in lines">
         <div class="preview">{{line.text}}</div>
     </div>

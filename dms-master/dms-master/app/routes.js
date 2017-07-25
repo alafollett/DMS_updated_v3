@@ -17,36 +17,180 @@ module.exports = function(app) {
 
     });
 
-    var tasksSchema = new mongoose.Schema({
+    //Forum Details Schema
+    var forumDetailsSchema = new mongoose.Schema({
         _id: String,
         What: String,
         Who: String,
-        When: Date
+        When: String
     });
+    forumDetailsSchema.set('collection', 'forumDetails');
+    var Detail = db.model('forumDetails', forumDetailsSchema);
 
+    //Announcement Schema
     var announcementSchema = new mongoose.Schema({
         _id: String,
         Announcement: String
     });
-
-    tasksSchema.set('collection', 'task');
-
     announcementSchema.set('collection', 'announcement');
+    var Announcement = db.model('announcement', announcementSchema);
 
-    var Task = db.model('task', tasksSchema);
-    var Announcement = db.model('ammouncement', announcementSchema);
+    //Barometer Schema
+    var barometerSchema = new mongoose.Schema({
+        _id: String,
+        Question1: String
+    });
+    barometerSchema.set('collection', 'barometer');
+    var Barometer = db.model('barometer', barometerSchema);
 
-	app.route("/forumDetailsHeader").get(function (req, res) {
+    //Confirmation Schema
+    var confirmationSchema = new mongoose.Schema({
+        _id: String,
+        Question1: String,
+        Question2: String
+    });
+    confirmationSchema.set('collection', 'confirmation');
+    var Confirmation = db.model('confirmation', confirmationSchema);
 
-        Task.findOne({}, function (err, task) {
+    //Demand Schema
+    var demandSchema = new mongoose.Schema({
+        _id: String,
+        Name: String,
+        Demand: String
+    });
+    demandSchema.set('collection','demand');
+    var Demand = db.model('demand', demandSchema);
+
+    //Forum Scorecard Schema
+    var forumScorecardSchema = new mongoose.Schema({
+        _id: String,
+        Metric: String,
+        Goal: String,
+        Status: String
+    });
+    forumScorecardSchema.set('collection', 'forumScorecard');
+    var forumScorecard = db.model('forumScorecard', forumScorecardSchema);
+
+    /////Forum Work Schema
+    var workSchema = new mongoose.Schema({
+        _id: String,
+        Sprint: String,
+        UserStory: String,
+        Owner: String,
+        Status: String,
+        Blockers: String
+    });
+    workSchema.set('collection', 'forumWork');
+    var forumWork = db.model('forumWork', workSchema);
+
+    //Leadership Scorecard Schema
+    var leadershipScorecardSchema = new mongoose.Schema({
+        _id: String,
+        Metric: String,
+        Goal: String,
+        Status: String
+    });
+    leadershipScorecardSchema.set('collection', 'leadershipScorecard');
+    var leadershipScorecard = db.model('leadershipScorecard', leadershipScorecardSchema);
+
+    //Mood Schema
+    var moodSchema = new mongoose.Schema({
+        _id: String,
+        Name: String,
+        Mood: String
+    });
+    moodSchema.set('collection', 'mood');
+    var Mood = db.model('mood', moodSchema);
+
+    ///Out of Office Schema
+    var outOfOfficeSchema = new mongoose.Schema({
+        _id: String,
+        Name: String,
+        Date: String
+    });
+    outOfOfficeSchema.set('collection', 'outOfOffice');
+    var outOfOffice = db.model('outOfOffice', outOfOfficeSchema);
+
+    //Parking Lot Schema
+    var parkingLotSchema = new mongoose.Schema({
+        _id: String,
+        Problem: String,
+        By: String
+    });
+    parkingLotSchema.set('collection', 'parkingLot');
+    var parkingLot = db.model('parkingLot', parkingLotSchema);
+
+    //Recognition Schema
+    var recognitionSchema = new mongoose.Schema({
+        _id: String,
+        Recognition: String
+    });
+    recognitionSchema.set('collection', 'recognition');
+    var Recognition = db.model('recognition', recognitionSchema);
+
+    //Skills Grid Schema
+    var skillsGridSchema = new mongoose.Schema({
+        _id: String,
+        Name: String,
+        Skill: String,
+        Proficiency: String
+    });
+    skillsGridSchema.set('collection', 'skillsGrid');
+    var skillsGrid = db.model('skillsGrid', skillsGridSchema);
+
+    //Tasks and To-Do's Schema
+    var tasksSchema = new mongoose.Schema({
+        _id: String,
+        What: String,
+        Who: String,
+        When: String
+    });
+    tasksSchema.set('collection', 'tasks');
+    var Tasks = db.model('tasks', tasksSchema);
+
+    //WILO Schema
+    var wiloSchema = new mongoose.Schema({
+        _id: String,
+        Meeting: String,
+        Time: String
+    });
+    wiloSchema.set('collection', 'wilo');
+    var WILO = db.model('wilo', wiloSchema);
+
+    //Work Summary Schema
+    var workSummarySchema = new mongoose.Schema({
+        _id: String,
+        Work: String
+    });
+    workSummarySchema.set('collection', 'workSummary');
+    var workSummary = db.model('workSummary', workSummarySchema);
+
+    //Work Tracker Schema
+    var workTrackerSchema = new mongoose.Schema({
+        _id: String,
+        Tracker: String
+    });
+    workTrackerSchema.set('collection', 'workTracker');
+    var workTracker = db.model('workTracker', workTrackerSchema);
+
+
+
+
+/////////ROUTING
+    app.route("/forumDetailsHeader").get(function (req, res) {
+
+        Detail.findOne({}, function (err, detail) {
             if (err) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(task.What);
+                console.log(detail.What);
+                console.log(detail.Who);
+                console.log(detail.When);
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'header' : task.What}))
+                res.send(JSON.stringify({'What' : detail.What, 'Who' : detail.Who, 'When' : detail.When}))
+
             }
         });
     });
@@ -59,7 +203,7 @@ module.exports = function(app) {
             } else {
                 //mongoose.connection.close();
                 console.log(announcement.Announcement);
-                //callback("", tasks);
+                //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify({'header' : announcement.Announcement}))
             }
@@ -67,92 +211,227 @@ module.exports = function(app) {
     });
 
     app.route("/barometerHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'Barometer'}))
 
+        Barometer.findOne({}, function (err, question1) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(question1.Question1);
+                //callback("", task);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : question1.Question1}))
+            }
+        });
     });
 
     app.route("/confirmationHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'Huddle Confirmation'}))
 
+        Confirmation.findOne({}, function (err, question2) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(question2.Question2);
+                //callback("", task);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : question2.Question2}))
+            }
+        });
     });
 
     app.route("/demandHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'Demand & Capacity Management'}))
 
+        Demand.findOne({}, function (err, demand) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(demand.Demand);
+                //callback("", demand);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : demand.Demand}))
+            }
+        })
     });
 
     app.route("/forumScorecardHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'Forum Scorecard'}))
 
+        forumScorecard.findOne({}, function (err, forumScorecard) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(forumScorecard.Metric);
+                //callback("", demand);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : forumScorecard.Metric}))
+            }
+        })
     });
 
     app.route("/forumWorkHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'Forum Work'}))
 
+        forumWork.findOne({}, function (err, work) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(work.Owner);
+                //callback("", demand);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : work.Owner}))
+            }
+        })
     });
 
     app.route("/leadershipHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'Leadership Scorecard'}))
 
+        leadershipScorecard.findOne({}, function (err, leadership) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(leadership.Metric);
+                //callback("", demand);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : leadership.Metric}))
+            }
+        })
     });
 
     app.route("/moodHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'Team Mood'}))
 
+        Mood.findOne({}, function (err, mood) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(mood.Mood);
+                //callback("", task);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : mood.Mood}))
+            }
+        });
     });
 
     app.route("/officeHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'Out-of-Office'}))
 
+        outOfOffice.findOne({}, function (err, office) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(office.Date);
+                //callback("", demand);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : office.Date}))
+            }
+        })
     });
 
     app.route("/parkingLotHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'Structured Parking Lot'}))
 
+        parkingLot.findOne({}, function (err, parkingLot) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(parkingLot.Problem);
+                //callback("", demand);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : parkingLot.Problem}))
+            }
+        })
     });
 
     app.route("/recognitionHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'Recognition'}))
 
+        Recognition.findOne({}, function (err, recognition) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(recognition.Recognition);
+                //callback("", task);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : recognition.Recognition}))
+            }
+        });
     });
 
     app.route("/skillsGridHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'Functional Skills Grid'}))
 
+        skillsGrid.findOne({}, function (err, skillsGrid) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(skillsGrid.Name);
+                //callback("", task);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : skillsGrid.Name}))
+            }
+        });
     });
 
     app.route("/tasksHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : "Tasks and To-Do's"}))
 
+        Tasks.findOne({}, function (err, tasks) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(tasks.What);
+                //callback("", task);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : tasks.What}))
+            }
+        });
     });
 
     app.route("/wiloHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'WILO'}))
 
+        WILO.findOne({}, function (err, wilo) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(wilo.Meeting);
+                //callback("", task);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : wilo.Meeting}))
+            }
+        });
     });
 
     app.route("/workTrackerHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'Forum Standard Work Tracker'}))
 
+        workTracker.findOne({}, function (err, workTracker) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(workTracker.Tracker);
+                //callback("", task);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : workTracker.Tracker}))
+            }
+        });
     });
 
     app.route("/workSummaryHeader").get(function (req, res) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({'header' : 'Forum Standard Work Summary'}))
 
+        workSummary.findOne({}, function (err, workSummary) {
+            if (err) {
+                onErr(err, callback);
+            } else {
+                //mongoose.connection.close();
+                console.log(workSummary.Work);
+                //callback("", task);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({'header' : workSummary.Work}))
+            }
+        });
     });
 };
