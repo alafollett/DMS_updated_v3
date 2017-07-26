@@ -1,3 +1,25 @@
+<!--<div data-ng-controller="forumScorecardCtrl">-->
+    <!--<h3 data-ng-model="header">{{header}}</h3>-->
+<!--</div>-->
+
+
 <div data-ng-controller="forumScorecardCtrl">
     <h3 data-ng-model="header">{{header}}</h3>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <table style="width:100%">
+        <tr>
+            <th>METRIC</th>
+            <th>GOAL</th>
+            <th>STATUS</th>
+        </tr>
+        <tr>
+            <td data-ng-model="Metric">{{Metric}}</td>
+            <td data-ng-model="Goal">{{Goal}}</td>
+            <td data-ng-model="Status">{{Status}}</td>
+        </tr>
+    </table>
 </div>

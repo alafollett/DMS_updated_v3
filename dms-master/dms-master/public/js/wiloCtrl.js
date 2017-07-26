@@ -5,9 +5,9 @@ var app = angular.module('huddleBoard');
 app.controller('wiloCtrl', ['$scope', '$http',
     function ($scope, $http) {
 
-        $scope.header = "";
+        $scope.header = "WILO ";
 
-        $http.get('/wiloHeader').then(function(response) {
-            $scope.header = response.data.header;
-        });
+        //$http.get('/wiloHeader').then(function(response) {
+        //    $scope.header = response.data.header;
+        //});
     }]);

@@ -5,9 +5,11 @@ var app = angular.module('huddleBoard');
 app.controller('leadershipCtrl', ['$scope', '$http',
     function ($scope, $http) {
 
-        $scope.header = "";
+        $scope.header = "Leadership Scorecard";
 
         $http.get('/leadershipHeader').then(function(response) {
-            $scope.header = response.data.header;
+            $scope.Metric = response.data.Metric;
+            $scope.Goal = response.data.Goal;
+            $scope.Status = response.data.Status;
         });
     }]);

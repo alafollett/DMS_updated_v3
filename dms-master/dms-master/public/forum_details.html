@@ -1,9 +1,15 @@
 <div data-ng-controller="forumDetailsCtrl">
+
     <h3 data-ng-model="header">{{header}}</h3>
-    <h5 data-ng-model="What">{{What}}</h5>
-    <h5 data-ng-model="Who">{{Who}}</h5>
-    <h5 data-ng-model="When">{{When}}</h5>
-    <div ng-repeat="line in lines">
-        <div class="preview">{{line.text}}</div>
-    </div>
+    <h5 data-ng-model="Name"><strong>Team Name:</strong> {{Name}}</h5>
+    <h5 data-ng-model="Schedule"><strong>Schedule:</strong> {{Schedule}}</h5>
+    <h5 data-ng-model="Leader"><strong>Leader:</strong> {{Leader}}</h5>
+    <h5 data-ng-model="Facilitator"><strong>Facilitator:</strong> {{Facilitator}}</h5>
+    <h5 data-ng-model="Dial"><strong>Dial-In Number:</strong> {{Dial}}</h5>
+    <h5 data-ng-model="Objective"><strong>Objective:</strong> {{Objective}}</h5>
+
+    <!--<div ng-repeat="line in lines">-->
+        <!--<div class="preview">{{line.text}}</div>-->
+    <!--</div>-->
+
 </div>

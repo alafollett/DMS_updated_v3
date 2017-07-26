@@ -1,3 +1,24 @@
+<!--<div data-ng-controller="officeCtrl">-->
+    <!--<h3 data-ng-model="header">{{header}}</h3>-->
+    <!--<h5 data-ng-model="Name", data-ng-model = "Date">{{Name}} - {{Date}}</h5>-->
+<!--</div>-->
+
+
 <div data-ng-controller="officeCtrl">
     <h3 data-ng-model="header">{{header}}</h3>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <table style="width:100%">
+        <tr>
+            <th>NAME</th>
+            <th>DATES OUT OF OFFICE</th>
+        </tr>
+        <tr>
+            <td data-ng-model="Name">{{Name}}</td>
+            <td data-ng-model="Date">{{Date}}</td>
+        </tr>
+    </table>
 </div>

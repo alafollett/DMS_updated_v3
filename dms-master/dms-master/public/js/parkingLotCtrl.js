@@ -5,9 +5,10 @@ var app = angular.module('huddleBoard');
 app.controller('parkingLotCtrl', ['$scope', '$http',
     function ($scope, $http) {
 
-        $scope.header = "";
+        $scope.header = "Structured Problem Solving Parking Lot";
 
         $http.get('/parkingLotHeader').then(function(response) {
-            $scope.header = response.data.header;
+            $scope.Problem = response.data.Problem;
+            $scope.By = response.data.By;
         });
     }]);

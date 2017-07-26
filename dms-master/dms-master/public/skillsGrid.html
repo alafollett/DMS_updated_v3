@@ -1,3 +1,25 @@
-<div data-ng-controller="skillsGridCtrl">
-    <h3 data-ng-model="header">{{header}}</h3>
-</div>
+<!--<div data-ng-controller="skillsGridCtrl">-->
+    <!--<h3 data-ng-model="header">{{header}}</h3>-->
+<!--</div>-->
+
+    <div data-ng-controller="skillsGridCtrl">
+        <h3 data-ng-model="header">{{header}}</h3>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+        <table style="width:100%">
+            <tr>
+                <th>NAME</th>
+                <th>SKILLS</th>
+                <th>PROFICIENCY</th>
+            </tr>
+            <tr>
+                <td data-ng-model="Name">{{Name}}</td>
+                <td data-ng-model="Skill">{{Skill}}</td>
+                <td data-ng-model="Proficiency">{{Proficiency}}</td>
+            </tr>
+        </table>
+    </div>
+

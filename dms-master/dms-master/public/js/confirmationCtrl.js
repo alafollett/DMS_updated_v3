@@ -5,9 +5,10 @@ var app = angular.module('huddleBoard');
 app.controller('confirmationCtrl', ['$scope', '$http',
     function ($scope, $http) {
 
-        $scope.header = "";
+        $scope.header = "Huddle Confirmation";
 
-        $http.get('/confirmationHeader').then(function(response) {
-            $scope.header = response.data.header;
-        });
+        //$http.get('/confirmationHeader').then(function(response) {
+        //    $scope.Question1 = response.data.Question1;
+        //    $scope.Question2 = response.data.Question2;
+        //});
     }]);

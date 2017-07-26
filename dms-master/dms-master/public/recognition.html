@@ -1,3 +1,27 @@
+<!--<div data-ng-controller="recognitionCtrl">-->
+    <!--<h3 data-ng-model="header">{{header}}</h3>-->
+    <!--<h5 data-ng-model="recognitionGiven", data-ng-model="From">{{recognitionGiven}} From: {{From}}</h5>-->
+<!--</div>-->
+
+
+
 <div data-ng-controller="recognitionCtrl">
     <h3 data-ng-model="header">{{header}}</h3>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <table style="width:100%">
+        <tr>
+            <th>RECOGNITION</th>
+            <th>FROM</th>
+        </tr>
+        <tr>
+            <td data-ng-model="recognitionGiven">{{recognitionGiven}}</td>
+            <td data-ng-model="From">{{From}}</td>
+        </tr>
+    </table>
 </div>
+
+

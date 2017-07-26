@@ -5,10 +5,14 @@ var app = angular.module('huddleBoard');
 app.controller('tasksCtrl', ['$scope', '$http',
     function ($scope, $http) {
 
-        $scope.header = "";
+        $scope.header = "Tasks / To-Dos";
 
         $http.get('/tasksHeader').then(function(response) {
-            $scope.header = response.data.header;
+            $scope.What = response.data.What;
+            $scope.Who = response.data.Who;
+            $scope.When = response.data.When;
         });
     }]);
+
+
 

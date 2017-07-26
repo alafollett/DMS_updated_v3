@@ -5,9 +5,9 @@ var app = angular.module('huddleBoard');
 app.controller('workSummaryCtrl', ['$scope', '$http',
     function ($scope, $http) {
 
-        $scope.header = "";
+        $scope.header = "Work Summary";
 
-        $http.get('/workSummaryHeader').then(function(response) {
-            $scope.header = response.data.header;
-        });
+        //$http.get('/workSummaryHeader').then(function(response) {
+        //    $scope.header = response.data.header;
+        //});
     }]);

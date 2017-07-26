@@ -5,9 +5,10 @@ var app = angular.module('huddleBoard');
 app.controller('moodCtrl', ['$scope', '$http',
     function ($scope, $http) {
 
-        $scope.header = "";
+        $scope.header = "Team Mood";
 
         $http.get('/moodHeader').then(function(response) {
-            $scope.header = response.data.header;
+            $scope.Name = response.data.Name;
+            $scope.Mood = response.data.Mood;
         });
     }]);

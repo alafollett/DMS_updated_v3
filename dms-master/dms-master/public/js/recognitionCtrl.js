@@ -5,9 +5,10 @@ var app = angular.module('huddleBoard');
 app.controller('recognitionCtrl', ['$scope', '$http',
     function ($scope, $http) {
 
-        $scope.header = "";
+        $scope.header = "Recognitions";
 
         $http.get('/recognitionHeader').then(function(response) {
-            $scope.header = response.data.header;
+            $scope.recognitionGiven = response.data.recognitionGiven;
+            $scope.From = response.data.From;
         });
     }]);

@@ -1,3 +1,22 @@
+<!--<div data-ng-controller="parkingLotCtrl">-->
+    <!--<h3 data-ng-model="header">{{header}}</h3>-->
+<!--</div>-->
+
 <div data-ng-controller="parkingLotCtrl">
     <h3 data-ng-model="header">{{header}}</h3>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <table style="width:100%">
+        <tr>
+            <th>PROBLEM</th>
+            <th>AUTHOR</th>
+        </tr>
+        <tr>
+            <td data-ng-model="Problem">{{Problem}}</td>
+            <td data-ng-model="By">{{By}}</td>
+        </tr>
+    </table>
 </div>

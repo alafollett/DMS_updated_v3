@@ -8,9 +8,12 @@ app.controller('forumDetailsCtrl', ['$scope', '$http',
         $scope.header = "Forum Details";
 
         $http.get('/forumDetailsHeader').then(function(response) {
-            $scope.What = response.data.What;
-            $scope.Who = response.data.Who;
-            $scope.When = response.data.When;
+            $scope.Name = response.data.Name;
+            $scope.Schedule = response.data.Schedule;
+            $scope.Leader = response.data.Leader;
+            $scope.Facilitator = response.data.Facilitator;
+            $scope.Dial = response.data.Dial;
+            $scope.Objective = response.data.Objective;
         });
 
         //$scope.lines = [{

@@ -5,9 +5,11 @@ var app = angular.module('huddleBoard');
 app.controller('skillsGridCtrl', ['$scope', '$http',
     function ($scope, $http) {
 
-        $scope.header = "";
+        $scope.header = "Functional Skills Grid";
 
         $http.get('/skillsGridHeader').then(function(response) {
-            $scope.header = response.data.header;
+            $scope.Name = response.data.Name;
+            $scope.Skill = response.data.Skill;
+            $scope.Proficiency = response.data.Proficiency;
         });
     }]);
