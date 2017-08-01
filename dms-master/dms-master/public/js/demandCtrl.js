@@ -9,7 +9,9 @@ app.controller('demandCtrl', ['$scope', '$http',
 
 
         $http.get('/demandHeader').then(function(response) {
-            $scope.Name = response.data.Name;
-            $scope.Demand = response.data.Demand;
+            //$scope.response = response;
+            $scope.data =response.data;
+            var data2 = $scope.data;
+            console.log($scope.data);
         });
     }]);

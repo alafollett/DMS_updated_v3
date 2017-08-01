@@ -17,8 +17,13 @@
             <th>DATES OUT OF OFFICE</th>
         </tr>
         <tr>
-            <td data-ng-model="Name">{{Name}}</td>
-            <td data-ng-model="Date">{{Date}}</td>
+            <td>
+                <div ng-repeat="office in Name">
+                     <p>{{Name.data}}</p>
+                </div>
+            </td>
+            <!--<td data-ng-model="Date">{{Date}}</td>-->
         </tr>
     </table>
 </div>
+

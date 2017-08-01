@@ -7,7 +7,7 @@ app.controller('workTrackerCtrl', ['$scope', '$http',
 
         $scope.header = "Work Tracker";
 
-        $http.get('/workTrackerHeader').then(function(response) {
-            $scope.header = response.data.header;
-        });
+        //$http.get('/workTrackerHeader').then(function(response) {
+        //    $scope.header = response.data.header;
+        //});
     }]);

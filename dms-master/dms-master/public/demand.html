@@ -1,4 +1,7 @@
 <div data-ng-controller="demandCtrl">
     <h3 data-ng-model="header">{{header}}</h3>
-    <h5 data-ng-model="Name", data-ng-model="Demand">{{Name}} - {{Demand}}</h5>
+    <div ng-repeat="demand in data">
+        <p>{{demand.Name}}</p>
+        <!--<p>{{Name.data}}</p>-->
+    </div>
 </div>

@@ -189,7 +189,7 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(detail.Name);
+                //console.log(detail.Name);
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify({'Name' : detail.Name, 'Schedule' : detail.Schedule,
@@ -207,10 +207,11 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(announcement.announcementGiven);
+                //console.log(announcement.announcementGiven);
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'announcementGiven' : announcement.announcementGiven, 'From' : announcement.From}))
+                res.send(JSON.stringify({'announcementGiven' : announcement.announcementGiven,
+                                            'From' : announcement.From}))
             }
         });
     });
@@ -222,7 +223,7 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(question1.Question1);
+                //console.log(question1.Question1);
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify({'header' : question1.Question1}))
@@ -237,25 +238,29 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(confirmation.Question2);
+                //console.log(confirmation.Question2);
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'Question1' : confirmation.Question1, 'Question2' : confirmation.Question2}))
+                res.send(JSON.stringify({'Question1' : confirmation.Question1,
+                                            'Question2' : confirmation.Question2}))
             }
         });
     });
 
     app.route("/demandHeader").get(function (req, res) {
 
-        Demand.findOne({}, function (err, demand) {
+        Demand.find({}, function (err, demand) {
             if (err) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(demand.Demand);
+                var myvar1 = demand[0];
+                var myvar2 = demand[0]._doc;
+                console.log(myvar2);
+                //console.log(demand.Demand);
                 //callback("", demand);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'Name' : demand.Name, 'Demand' : demand.Demand}))
+                res.send(JSON.stringify(demand))
             }
         })
     });
@@ -267,10 +272,11 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(forumScorecard.Metric);
+                //console.log(forumScorecard.Metric);
                 //callback("", demand);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'Metric' : forumScorecard.Metric, 'Goal' : forumScorecard.Goal, 'Status' : forumScorecard.Status}))
+                res.send(JSON.stringify({'Metric' : forumScorecard.Metric, 'Goal' : forumScorecard.Goal,
+                                            'Status' : forumScorecard.Status}))
             }
         })
     });
@@ -282,7 +288,7 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(work.Owner);
+                //console.log(work.Owner);
                 //callback("", demand);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify({'Sprint' : work.Sprint, 'UserStory' : work.UserStory,
@@ -299,10 +305,11 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(leadership.Metric);
+                //console.log(leadership.Metric);
                 //callback("", demand);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'Metric' : leadership.Metric, 'Goal' : leadership.Goal, 'Status' : leadership.Status}))
+                res.send(JSON.stringify({'Metric' : leadership.Metric, 'Goal' : leadership.Goal,
+                                            'Status' : leadership.Status}))
             }
         })
     });
@@ -314,7 +321,7 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(mood.Mood);
+                //console.log(mood.Mood);
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify({'Name' : mood.Name, 'Mood' : mood.Mood}))
@@ -329,10 +336,12 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(office.Date);
+                //var myvar1 = office[0];
+                //var myvar2 = office[0]._doc;
+                //console.log(office.Date);
                 //callback("", demand);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'Name' : office.Name, 'Date' : office.Date}))
+                res.send(JSON.stringify(office))
             }
         })
     });
@@ -344,7 +353,7 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(parkingLot.Problem);
+                //console.log(parkingLot.Problem);
                 //callback("", demand);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify({'Problem' : parkingLot.Problem, 'By' : parkingLot.By}))
@@ -359,10 +368,11 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(recognition.Recognition);
+                //console.log(recognition.Recognition);
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'recognitionGiven' : recognition.recognitionGiven, 'From' : recognition.From}))
+                res.send(JSON.stringify({'recognitionGiven' : recognition.recognitionGiven,
+                                            'From' : recognition.From}))
             }
         });
     });
@@ -374,7 +384,7 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(skillsGrid.Name);
+                //console.log(skillsGrid.Name);
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify({'Name' : skillsGrid.Name, 'Skill' : skillsGrid.Skill,
@@ -390,10 +400,11 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(tasks.What);
+                //console.log(tasks.What);
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'What' : tasks.What, 'Who' : tasks.Who, 'When' : tasks.When}))
+                res.send(JSON.stringify({'What' : tasks.What, 'Who' : tasks.Who,
+                                            'When' : tasks.When}))
             }
         });
     });
@@ -405,7 +416,7 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(wilo.Meeting);
+                //console.log(wilo.Meeting);
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify({'header' : wilo.Meeting}))

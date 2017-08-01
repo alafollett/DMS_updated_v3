@@ -8,7 +8,7 @@ app.controller('moodCtrl', ['$scope', '$http',
         $scope.header = "Team Mood";
 
         $http.get('/moodHeader').then(function(response) {
-            $scope.Name = response.data.Name;
-            $scope.Mood = response.data.Mood;
+            //$scope.Name = response.data.Name;
+            //$scope.Mood = response.data.Mood;
         });
     }]);

@@ -12,3 +12,5 @@ app.controller('announcementsCtrl', ['$scope', '$http',
         $scope.From = response.data.From;
         });
     }]);
+
+

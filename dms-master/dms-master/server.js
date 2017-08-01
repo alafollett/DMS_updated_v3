@@ -5,39 +5,7 @@ var app            = express();
 var mongoose       = require('mongoose');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
-//
-//// configuration ===========================================
-//var mongoDB = 'mongodb://root:root@localhost:27017/dms';
-//mongoose.connect(mongoDB);
-//
-//var db = mongoose.connection;
-//
-//db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-//
-//
-//db.once('open', function () {
-//    var tasksSchema = new mongoose.Schema({
-//        _id: String,
-//        What: String,
-//        Who: String,
-//        When: Date
-//    });
-//
-//    tasksSchema.set('collection', 'task');
-//
-//    var Task = db.model('task', tasksSchema);
-//    Task.findOne({}, function (err, tasks) {
-//        if (err) {
-//            onErr(err, callback);
-//        } else {
-//            mongoose.connection.close();
-//            console.log(tasks.What);
-//            //callback("", tasks);
-//        }
-//    });
-//
-//
-//});
+
 
 var port = process.env.PORT || 9080; // set our port
 // mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
