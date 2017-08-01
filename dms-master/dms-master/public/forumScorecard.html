@@ -1,8 +1,3 @@
-<!--<div data-ng-controller="forumScorecardCtrl">-->
-    <!--<h3 data-ng-model="header">{{header}}</h3>-->
-<!--</div>-->
-
-
 <div data-ng-controller="forumScorecardCtrl">
     <h3 data-ng-model="header">{{header}}</h3>
     <style>
@@ -16,10 +11,10 @@
             <th>GOAL</th>
             <th>STATUS</th>
         </tr>
-        <tr>
-            <td data-ng-model="Metric">{{Metric}}</td>
-            <td data-ng-model="Goal">{{Goal}}</td>
-            <td data-ng-model="Status">{{Status}}</td>
+        <tr ng-repeat = "scorecard in data">
+            <td>{{scorecard.Metric}}</td>
+            <td>{{scorecard.Goal}}</td>
+            <td>{{scorecard.Status}}</td>
         </tr>
     </table>
 </div>

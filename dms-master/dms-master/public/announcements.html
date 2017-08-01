@@ -16,9 +16,9 @@
             <th>ANNOUNCEMENT</th>
             <th>FROM</th>
         </tr>
-        <tr>
-            <td data-ng-model="announcementGiven">{{announcementGiven}}</td>
-            <td data-ng-model="From">{{From}}</td>
+        <tr ng-repeat="announcement in data">
+            <td>{{announcement.announcementGiven}}</td>
+            <td>{{announcement.From}}</td>
         </tr>
     </table>
 </div>

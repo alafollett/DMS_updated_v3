@@ -184,17 +184,17 @@ module.exports = function(app) {
 /////////ROUTING
     app.route("/forumDetailsHeader").get(function (req, res) {
 
-        Detail.findOne({}, function (err, detail) {
+        Detail.find({}, function (err, detail) {
             if (err) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
+                var myvar1 = detail[0];
+                var myvar2 = detail[0]._doc;
                 //console.log(detail.Name);
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'Name' : detail.Name, 'Schedule' : detail.Schedule,
-                                            'Leader' : detail.Leader, 'Facilitator' : detail.Facilitator,
-                                                'Dial' : detail.Dial, 'Objective' : detail.Objective}))
+                res.send(JSON.stringify(detail))
 
             }
         });
@@ -202,16 +202,17 @@ module.exports = function(app) {
 
     app.route("/announcementsHeader").get(function (req, res) {
 
-        Announcement.findOne({}, function (err, announcement) {
+        Announcement.find({}, function (err, announcement) {
             if (err) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
+                var myvar1 = announcement[0];
+                var myvar2 = announcement[0]._doc;
                 //console.log(announcement.announcementGiven);
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'announcementGiven' : announcement.announcementGiven,
-                                            'From' : announcement.From}))
+                res.send(JSON.stringify(announcement))
             }
         });
     });
@@ -256,7 +257,7 @@ module.exports = function(app) {
                 //mongoose.connection.close();
                 var myvar1 = demand[0];
                 var myvar2 = demand[0]._doc;
-                console.log(myvar2);
+                //console.log(myvar2);
                 //console.log(demand.Demand);
                 //callback("", demand);
                 res.setHeader('Content-Type', 'application/json');
@@ -267,16 +268,17 @@ module.exports = function(app) {
 
     app.route("/forumScorecardHeader").get(function (req, res) {
 
-        forumScorecard.findOne({}, function (err, forumScorecard) {
+        forumScorecard.find({}, function (err, forumScorecard) {
             if (err) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
+                var myvar1 = forumScorecard[0];
+                var myvar2 = forumScorecard[0]._doc;
                 //console.log(forumScorecard.Metric);
                 //callback("", demand);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'Metric' : forumScorecard.Metric, 'Goal' : forumScorecard.Goal,
-                                            'Status' : forumScorecard.Status}))
+                res.send(JSON.stringify(forumScorecard))
             }
         })
     });

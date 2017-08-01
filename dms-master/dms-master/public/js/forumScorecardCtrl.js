@@ -8,8 +8,7 @@ app.controller('forumScorecardCtrl', ['$scope', '$http',
         $scope.header = "Forum Scorecard";
 
         $http.get('/forumScorecardHeader').then(function(response) {
-            $scope.Metric = response.data.Metric;
-            $scope.Goal = response.data.Goal;
-            $scope.Status = response.data.Status;
+            $scope.data = response.data;
+            var data2 = $scope.data;
         });
     }]);

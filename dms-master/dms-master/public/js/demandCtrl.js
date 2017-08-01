@@ -12,6 +12,6 @@ app.controller('demandCtrl', ['$scope', '$http',
             //$scope.response = response;
             $scope.data =response.data;
             var data2 = $scope.data;
-            console.log($scope.data);
+            //console.log($scope.data);
         });
     }]);

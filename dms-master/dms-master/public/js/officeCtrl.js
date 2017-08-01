@@ -8,8 +8,8 @@ app.controller('officeCtrl', ['$scope', '$http',
         $scope.header = "Out-of-Office Schedule";
 
         $http.get('/officeHeader').then(function(response) {
-            $scope.data = response.data;
-            var data2 = $scope.data;
+            //$scope.data = response.data;
+            //var data2 = $scope.data;
         });
     }]);
 

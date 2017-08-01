@@ -8,8 +8,8 @@ app.controller('announcementsCtrl', ['$scope', '$http',
     $scope.header = "Announcements";
 
     $http.get('/announcementsHeader').then(function(response) {
-        $scope.announcementGiven = response.data.announcementGiven;
-        $scope.From = response.data.From;
+        $scope.data =response.data;
+        var data2 = $scope.data;
         });
     }]);
 
