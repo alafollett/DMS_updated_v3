@@ -8,9 +8,8 @@ app.controller('tasksCtrl', ['$scope', '$http',
         $scope.header = "Tasks / To-Dos";
 
         $http.get('/tasksHeader').then(function(response) {
-            $scope.What = response.data.What;
-            $scope.Who = response.data.Who;
-            $scope.When = response.data.When;
+            $scope.data = response.data;
+            var data2 = $scope.data;
         });
     }]);
 

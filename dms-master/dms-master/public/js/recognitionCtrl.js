@@ -8,7 +8,7 @@ app.controller('recognitionCtrl', ['$scope', '$http',
         $scope.header = "Recognitions";
 
         $http.get('/recognitionHeader').then(function(response) {
-            $scope.recognitionGiven = response.data.recognitionGiven;
-            $scope.From = response.data.From;
+            $scope.data = response.data;
+            var data2 = $scope.data;
         });
     }]);

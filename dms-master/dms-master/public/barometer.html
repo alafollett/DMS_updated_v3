@@ -1,3 +1,17 @@
 <div data-ng-controller="barometerCtrl">
     <h3 data-ng-model="header">{{header}}</h3>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <table style="width:100%">
+        <tr>
+            <th>QUESTION</th>
+        </tr>
+        <tr ng-repeat= "barometer in data">
+            <td>{{barometer.Question}}</td>
+        </tr>
+    </table>
 </div>
+

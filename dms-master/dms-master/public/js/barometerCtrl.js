@@ -7,7 +7,10 @@ app.controller('barometerCtrl', ['$scope', '$http',
 
         $scope.header = "Barometer";
 
-        //$http.get('/barometerHeader').then(function(response) {
-        //    $scope.header = response.data.header;
-        //});
+        $http.get('/barometerHeader').then(function(response) {
+           $scope.data = response.data;
+            var data2 = $scope.data;
+        });
     }]);
+
+

@@ -1,10 +1,3 @@
-<!--<div data-ng-controller="recognitionCtrl">-->
-    <!--<h3 data-ng-model="header">{{header}}</h3>-->
-    <!--<h5 data-ng-model="recognitionGiven", data-ng-model="From">{{recognitionGiven}} From: {{From}}</h5>-->
-<!--</div>-->
-
-
-
 <div data-ng-controller="recognitionCtrl">
     <h3 data-ng-model="header">{{header}}</h3>
     <style>
@@ -17,9 +10,9 @@
             <th>RECOGNITION</th>
             <th>FROM</th>
         </tr>
-        <tr>
-            <td data-ng-model="recognitionGiven">{{recognitionGiven}}</td>
-            <td data-ng-model="From">{{From}}</td>
+        <tr ng-repeat="recognition in data">
+            <td>{{recognition.recognitionGiven}}</td>
+            <td>{{recognition.From}}</td>
         </tr>
     </table>
 </div>

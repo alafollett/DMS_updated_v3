@@ -1,7 +1,16 @@
 <div data-ng-controller="confirmationCtrl">
     <h3 data-ng-model="header">{{header}}</h3>
-
-    <h5 data-ng-model="Question1">{{Question1}}</h5>
-    <h5 data-ng-model="Question2">{{Question2}}</h5>
-
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <table style="width:100%">
+        <tr>
+            <th>QUESTION</th>
+        </tr>
+        <tr  ng-repeat="confirmation in data">
+            <td>{{confirmation.Name}}</td>
+        </tr>
+    </table>
 </div>

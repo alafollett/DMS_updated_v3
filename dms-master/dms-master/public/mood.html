@@ -1,4 +1,18 @@
 <div data-ng-controller="moodCtrl">
     <h3 data-ng-model="header">{{header}}</h3>
-    <!--<h5 data-ng-model="Name", data-ng-model="Mood">{{Name}} - {{Mood}}</h5>-->
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <table style="width:100%">
+        <tr>
+            <th>NAME</th>
+            <th>MOOD</th>
+        </tr>
+        <tr  ng-repeat="mood in data">
+            <td>{{mood.Name}}</td>
+            <td>{{mood.Mood}}</td>
+        </tr>
+    </table>
 </div>

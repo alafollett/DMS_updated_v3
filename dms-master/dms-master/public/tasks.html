@@ -1,7 +1,3 @@
-<!--<div data-ng-controller="tasksCtrl">-->
-    <!--<h3 data-ng-model="header">{{header}}</h3>-->
-<!--</div>-->
-
 <div data-ng-controller="tasksCtrl">
     <h3 data-ng-model="header">{{header}}</h3>
     <style>
@@ -15,10 +11,10 @@
             <th>WHO</th>
             <th>WHEN</th>
         </tr>
-        <tr>
-            <td data-ng-model="What">{{What}}</td>
-            <td data-ng-model="Who">{{Who}}</td>
-            <td data-ng-model="When">{{When}}</td>
+        <tr ng-repeat="tasks in data">
+            <td >{{tasks.What}}</td>
+            <td>{{tasks.Who}}</td>
+            <td>{{tasks.When}}</td>
         </tr>
     </table>
 </div>

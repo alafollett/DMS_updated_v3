@@ -7,8 +7,8 @@ app.controller('confirmationCtrl', ['$scope', '$http',
 
         $scope.header = "Huddle Confirmation";
 
-        //$http.get('/confirmationHeader').then(function(response) {
-        //    $scope.Question1 = response.data.Question1;
-        //    $scope.Question2 = response.data.Question2;
-        //});
+        $http.get('/confirmationHeader').then(function(response) {
+            $scope.data = response.data;
+            var data2 = $scope.data;
+        });
     }]);

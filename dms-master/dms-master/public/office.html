@@ -1,9 +1,3 @@
-<!--<div data-ng-controller="officeCtrl">-->
-    <!--<h3 data-ng-model="header">{{header}}</h3>-->
-    <!--<h5 data-ng-model="Name", data-ng-model = "Date">{{Name}} - {{Date}}</h5>-->
-<!--</div>-->
-
-
 <div data-ng-controller="officeCtrl">
     <h3 data-ng-model="header">{{header}}</h3>
     <style>
@@ -16,13 +10,9 @@
             <th>NAME</th>
             <th>DATES OUT OF OFFICE</th>
         </tr>
-        <tr>
-            <td>
-                <div ng-repeat="office in Name">
-                     <p>{{office.Name}}</p>
-                </div>
-            </td>
-            <!--<td data-ng-model="Date">{{Date}}</td>-->
+        <tr  ng-repeat="office in data">
+            <td>{{office.Name}}</td>
+            <td>{{office.Date}}</td>
         </tr>
     </table>
 </div>

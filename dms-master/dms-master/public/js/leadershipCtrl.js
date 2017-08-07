@@ -8,8 +8,7 @@ app.controller('leadershipCtrl', ['$scope', '$http',
         $scope.header = "Leadership Scorecard";
 
         $http.get('/leadershipHeader').then(function(response) {
-            $scope.Metric = response.data.Metric;
-            $scope.Goal = response.data.Goal;
-            $scope.Status = response.data.Status;
+            $scope.data = response.data;
+            var data2 = $scope.data;
         });
     }]);

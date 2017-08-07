@@ -1,6 +1,19 @@
 <div data-ng-controller="demandCtrl">
     <h3 data-ng-model="header">{{header}}</h3>
-    <div ng-repeat="demand in data">
-        <p>{{demand.Name}} - {{demand.Demand}}</p>
-    </div>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <table style="width:100%">
+        <tr>
+            <th>NAME</th>
+            <th>DEMAND</th>
+        </tr>
+        <tr  ng-repeat="demand in data">
+            <td>{{demand.Name}}</td>
+            <td>{{demand.Demand}}</td>
+        </tr>
+    </table>
 </div>
+

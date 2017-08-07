@@ -42,7 +42,7 @@ module.exports = function(app) {
     //Barometer Schema
     var barometerSchema = new mongoose.Schema({
         _id: String,
-        Question1: String
+        Question: String
     });
     barometerSchema.set('collection', 'barometer');
     var Barometer = db.model('barometer', barometerSchema);
@@ -50,8 +50,7 @@ module.exports = function(app) {
     //Confirmation Schema
     var confirmationSchema = new mongoose.Schema({
         _id: String,
-        Question1: String,
-        Question2: String
+        Question: String
     });
     confirmationSchema.set('collection', 'confirmation');
     var Confirmation = db.model('confirmation', confirmationSchema);
@@ -189,9 +188,11 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
+
+                //Establish Array
                 var myvar1 = detail[0];
                 var myvar2 = detail[0]._doc;
-                //console.log(detail.Name);
+
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(detail))
@@ -207,9 +208,11 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
+
+                //Establish Array
                 var myvar1 = announcement[0];
                 var myvar2 = announcement[0]._doc;
-                //console.log(announcement.announcementGiven);
+
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(announcement))
@@ -219,31 +222,40 @@ module.exports = function(app) {
 
     app.route("/barometerHeader").get(function (req, res) {
 
-        Barometer.findOne({}, function (err, question1) {
+        Barometer.find({}, function (err, barometer) {
             if (err) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
+
+                // Not pulling array - hopefully pulling eventually from outside source
+                //var myvar1 = barometer[0];
+                //var myvar2 = barometer[0]._doc;
+
                 //console.log(question1.Question1);
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'header' : question1.Question1}))
+                res.send(JSON.stringify(barometer))
             }
         });
     });
 
     app.route("/confirmationHeader").get(function (req, res) {
 
-        Confirmation.findOne({}, function (err, confirmation) {
+        Confirmation.find({}, function (err, confirmation) {
             if (err) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
+
+                // Not pulling array - hopefully pulling eventually from outside source
+                //var myvar1 = confirmation[0];
+                //var myvar2 = confirmation[0]._doc;
+
                 //console.log(confirmation.Question2);
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'Question1' : confirmation.Question1,
-                                            'Question2' : confirmation.Question2}))
+                res.send(JSON.stringify(confirmation))
             }
         });
     });
@@ -255,10 +267,11 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
+
+                //Establish Array
                 var myvar1 = demand[0];
                 var myvar2 = demand[0]._doc;
-                //console.log(myvar2);
-                //console.log(demand.Demand);
+
                 //callback("", demand);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(demand))
@@ -273,9 +286,11 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
+
+                //Establish Array
                 var myvar1 = forumScorecard[0];
                 var myvar2 = forumScorecard[0]._doc;
-                //console.log(forumScorecard.Metric);
+
                 //callback("", demand);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(forumScorecard))
@@ -302,45 +317,54 @@ module.exports = function(app) {
 
     app.route("/leadershipHeader").get(function (req, res) {
 
-        leadershipScorecard.findOne({}, function (err, leadership) {
+        leadershipScorecard.find({}, function (err, leadership) {
             if (err) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                //console.log(leadership.Metric);
+
+                //Establish Array
+                var myvar1 = leadership[0];
+                var myvar2 = leadership[0]._doc;
+
                 //callback("", demand);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'Metric' : leadership.Metric, 'Goal' : leadership.Goal,
-                                            'Status' : leadership.Status}))
+                res.send(JSON.stringify(leadership))
             }
         })
     });
 
     app.route("/moodHeader").get(function (req, res) {
 
-        Mood.findOne({}, function (err, mood) {
+        Mood.find({}, function (err, mood) {
             if (err) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                //console.log(mood.Mood);
+
+                //Establish Array
+                var myvar = mood[0];
+                var myvar2 = mood[0]._doc;
+
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'Name' : mood.Name, 'Mood' : mood.Mood}))
+                res.send(JSON.stringify(mood))
             }
         });
     });
 
     app.route("/officeHeader").get(function (req, res) {
 
-        outOfOffice.findOne({}, function (err, office) {
+        outOfOffice.find({}, function (err, office) {
             if (err) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                //var myvar1 = office[0];
-                //var myvar2 = office[0]._doc;
-                //console.log(office.Date);
+
+                //Establish Array
+                var myvar1 = office[0];
+                var myvar2 = office[0]._doc;
+
                 //callback("", demand);
                 res.setHeader('Content-Type', 'application/json');
                 res.send(JSON.stringify(office))
@@ -355,26 +379,33 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                //console.log(parkingLot.Problem);
+
+                // Not pulling array - hopefully pulling eventually from outside source
+                //var myvar1 = parkingLot[0];
+                //var myvar2 = parkingLot[0]._doc;
+
                 //callback("", demand);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'Problem' : parkingLot.Problem, 'By' : parkingLot.By}))
+                res.send(JSON.stringify(parkingLot))
             }
         })
     });
 
     app.route("/recognitionHeader").get(function (req, res) {
 
-        Recognition.findOne({}, function (err, recognition) {
+        Recognition.find({}, function (err, recognition) {
             if (err) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                //console.log(recognition.Recognition);
+
+                //Establish Array
+                var myvar1 = recognition[0];
+                var myvar2 = recognition[0]._doc;
+
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'recognitionGiven' : recognition.recognitionGiven,
-                                            'From' : recognition.From}))
+                res.send(JSON.stringify(recognition))
             }
         });
     });
@@ -386,27 +417,33 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                //console.log(skillsGrid.Name);
+
+                // Not pulling array - hopefully pulling eventually from outside source
+                //var myvar1 = skillsGrid[0];
+                //var myvar2 = skillsGrid[0]._doc;
+
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'Name' : skillsGrid.Name, 'Skill' : skillsGrid.Skill,
-                                            'Proficiency' : skillsGrid.Proficiency}))
+                res.send(JSON.stringify(skillsGrid))
             }
         });
     });
 
     app.route("/tasksHeader").get(function (req, res) {
 
-        Tasks.findOne({}, function (err, tasks) {
+        Tasks.find({}, function (err, tasks) {
             if (err) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                //console.log(tasks.What);
+
+                //Establish Array
+                var myvar = tasks[0];
+                var myvar2= tasks[0]._doc;
+
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'What' : tasks.What, 'Who' : tasks.Who,
-                                            'When' : tasks.When}))
+                res.send(JSON.stringify(tasks))
             }
         });
     });
@@ -418,10 +455,14 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                //console.log(wilo.Meeting);
+
+                // Not pulling array - hopefully pulling eventually from outside source
+                //var myvar1 = wilo[0];
+                //var myvar2 = wilo[0]._doc;
+
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'header' : wilo.Meeting}))
+                res.send(JSON.stringify(wilo))
             }
         });
     });
@@ -433,10 +474,14 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(workTracker.Tracker);
+
+                // Not pulling array - hopefully pulling eventually from outside source
+                //var myvar1 = workTracker[0];
+                //var myvar2 = workTracker[0]._doc;
+
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'header' : workTracker.Tracker}))
+                res.send(JSON.stringify(workTracker))
             }
         });
     });
@@ -448,10 +493,14 @@ module.exports = function(app) {
                 onErr(err, callback);
             } else {
                 //mongoose.connection.close();
-                console.log(workSummary.Work);
+
+                // Not pulling array - hopefully pulling eventually from outside source
+                //var myvar1 = workSummary[0];
+                //var myvar2 = workSummary[0]._doc;
+
                 //callback("", task);
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'header' : workSummary.Work}))
+                res.send(JSON.stringify(workSummary))
             }
         });
     });
