@@ -27,8 +27,8 @@ module.exports = function(app) {
         Dial: String,
         Objective: String
     });
-    forumDetailsSchema.set('collection', 'forumDetails');
-    var Detail = db.model('forumDetails', forumDetailsSchema);
+    forumDetailsSchema.set('collection', 'forumdetails');
+    var forumdetail = db.model('forumdetails', forumDetailsSchema);
 
     //Announcement Schema
     var announcementSchema = new mongoose.Schema({
@@ -180,10 +180,10 @@ module.exports = function(app) {
 
 
 
-/////////ROUTING
+/////////ROUTING & POSTING
     app.route("/forumDetailsHeader").get(function (req, res) {
 
-        Detail.find({}, function (err, detail) {
+        forumdetail.find({}, function (err, detail) {
             if (err) {
                 onErr(err, callback);
             } else {
@@ -199,6 +199,37 @@ module.exports = function(app) {
 
             }
         });
+    });
+
+    //app.get("/forumDetailsHeader", function(req, res){
+    //    getforumDetails(res);
+    //})
+
+    app.post("/forumDetailsHeader", function (req, res){
+
+        forumdetail.create = function (req, res){
+            new forumDetail({
+                content : req.body.content,
+                updated_at: Date.now()
+            }).save(function(err, detail, count){
+                res.redirect('/');
+            });
+        };
+
+        //forumdetail.create({
+        //    text : req.body.text,
+        //    done : false
+        //}, function (err, detail){
+        //    if (err)
+        //        res.send(err);
+        //
+        //    forumdetail.find(function(err, detail){
+        //        if (err)
+        //            res.send(err);
+        //
+        //        res.json(detail);
+        //    });
+        //});
     });
 
     app.route("/announcementsHeader").get(function (req, res) {

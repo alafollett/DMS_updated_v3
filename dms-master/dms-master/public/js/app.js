@@ -14,3 +14,4 @@ huddleBoard.config(function($stateProvider, $urlRouterProvider) {
         )
 
 });
+

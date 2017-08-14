@@ -6,7 +6,17 @@
         <h5 data-ng-model="Schedule"><strong>Schedule:</strong> {{details.Schedule}}</h5>
         <h5 data-ng-model="Leader"><strong>Leader:</strong> {{details.Leader}}</h5>
         <h5 data-ng-model="Facilitator"><strong>Facilitator:</strong> {{details.Facilitator}}</h5>
-        <h5 data-ng-model="Dial"><strong>Dial-In Number:</strong> {{detials.Dial}}</h5>
+        <h5 data-ng-model="Dial"><strong>Dial-In Number:</strong> {{details.Dial}}</h5>
         <h5 data-ng-model="Objective"><strong>Objective:</strong> {{details.Objective}}</h5>
     </div>
+
+    <input type = "text" class = "forum-control input-lg text-center" ng-model="forumDetails.text">
+    <button type="submit" class = "btn btn-primary btn-lg" ng-click = "createforumDetails()">Add</button>
+
+    <!--<div class="checkbox" ng-repeat="details in details">-->
+        <!--<label>-->
+            <!--<input type="checkbox" ng-click="deleteforumdetaisl(detail._id)"> {{ detail.text }}-->
+        <!--</label>-->
+    <!--</div>-->
+
 </div>
