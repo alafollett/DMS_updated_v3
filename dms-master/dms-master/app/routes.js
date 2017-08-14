@@ -207,29 +207,32 @@ module.exports = function(app) {
 
     app.post("/forumDetailsHeader", function (req, res){
 
-        forumdetail.create = function (req, res){
-            new forumDetail({
-                content : req.body.content,
-                updated_at: Date.now()
-            }).save(function(err, detail, count){
-                res.redirect('/');
-            });
-        };
-
-        //forumdetail.create({
-        //    text : req.body.text,
-        //    done : false
-        //}, function (err, detail){
-        //    if (err)
-        //        res.send(err);
-        //
-        //    forumdetail.find(function(err, detail){
-        //        if (err)
-        //            res.send(err);
-        //
-        //        res.json(detail);
+        //New way to create (not working)
+        //forumdetail.create = function (req, res){
+        //    new forumDetail({
+        //        content : req.body.content,
+        //        updated_at: Date.now()
+        //    }).save(function(err, detail, count){
+        //        res.redirect('/');
         //    });
-        //});
+        //};
+        //
+
+        //Original way to create (not working)
+        forumdetail.create({
+            text : req.body.text,
+            done : false
+        }, function (err, detail){
+            if (err)
+                res.send(err);
+
+            forumdetail.find(function(err, detail){
+                if (err)
+                    res.send(err);
+
+                //res.json(detail);
+            });
+        });
     });
 
     app.route("/announcementsHeader").get(function (req, res) {

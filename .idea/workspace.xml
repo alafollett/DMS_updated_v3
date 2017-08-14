@@ -4,10 +4,6 @@
     <list default="true" id="c7eeeb17-fc06-426c-9bc0-6f0e3301c65d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dms-master/dms-master/app/routes.js" afterPath="$PROJECT_DIR$/dms-master/dms-master/app/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dms-master/dms-master/public/forum_details.html" afterPath="$PROJECT_DIR$/dms-master/dms-master/public/forum_details.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dms-master/dms-master/public/js/app.js" afterPath="$PROJECT_DIR$/dms-master/dms-master/public/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dms-master/dms-master/public/js/forumDetailsCtrl.js" afterPath="$PROJECT_DIR$/dms-master/dms-master/public/js/forumDetailsCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dms-master/dms-master/server.js" afterPath="$PROJECT_DIR$/dms-master/dms-master/server.js" />
     </list>
     <ignored path="DMS_updated_v3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="routes.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dms-master/dms-master/app/routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="219" column="32" selection-start-line="219" selection-start-column="32" selection-end-line="219" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.40044743">
+              <caret line="232" column="16" selection-start-line="232" selection-start-column="18" selection-end-line="232" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -58,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forumDetailsCtrl.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="forumDetailsCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dms-master/dms-master/public/js/forumDetailsCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8389262">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -107,10 +103,10 @@
         <option value="$PROJECT_DIR$/dms-master/dms-master/public/js/tasksCtrl.js" />
         <option value="$PROJECT_DIR$/dms-master/dms-master/public/tasks.html" />
         <option value="$PROJECT_DIR$/dms-master/dms-master/public/forum_details.html" />
-        <option value="$PROJECT_DIR$/dms-master/dms-master/app/routes.js" />
         <option value="$PROJECT_DIR$/dms-master/dms-master/public/js/app.js" />
         <option value="$PROJECT_DIR$/dms-master/dms-master/server.js" />
         <option value="$PROJECT_DIR$/dms-master/dms-master/public/js/forumDetailsCtrl.js" />
+        <option value="$PROJECT_DIR$/dms-master/dms-master/app/routes.js" />
       </list>
     </option>
   </component>
@@ -120,8 +116,7 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="18" />
-    <option name="y" value="81" />
+    <option name="y" value="154" />
     <option name="width" value="1403" />
     <option name="height" value="819" />
   </component>
@@ -342,7 +337,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="18" y="81" width="1403" height="819" extended-state="0" />
+    <frame x="0" y="154" width="1403" height="819" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3039074" sideWeight="0.49284253" order="0" side_tool="false" content_ui="tabs" />
@@ -394,7 +389,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="74" />
+      <option name="time" value="75" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -754,14 +749,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dms-master/dms-master/app/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="219" column="32" selection-start-line="219" selection-start-column="32" selection-end-line="219" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dms-master/dms-master/public/forum_details.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.625">
@@ -772,8 +759,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dms-master/dms-master/public/js/forumDetailsCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8389262">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dms-master/dms-master/app/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40044743">
+          <caret line="232" column="16" selection-start-line="232" selection-start-column="18" selection-end-line="232" selection-end-column="35" />
           <folding />
         </state>
       </provider>
