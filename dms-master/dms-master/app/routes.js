@@ -2,7 +2,9 @@ module.exports = function(app) {
 
     var http = require("http");
 
-    var mongoose       = require('mongoose');
+    var mongoose = require('mongoose');
+
+    //var router = express.Router();
 
 // configuration ===========================================
     var mongoDB = 'mongodb://root:root@localhost:27017/dms';
@@ -18,17 +20,17 @@ module.exports = function(app) {
     });
 
     //Forum Details Schema
-    var forumDetailsSchema = new mongoose.Schema({
-        _id: String,
-        Name: String,
-        Leader: String,
-        Schedule: String,
-        Facilitator: String,
-        Dial: String,
-        Objective: String
-    });
-    forumDetailsSchema.set('collection', 'forumdetails');
-    var forumdetail = db.model('forumdetails', forumDetailsSchema);
+    //var forumDetailsSchema = new mongoose.Schema({
+    //    _id: String,
+    //    Name: String,
+    //    Leader: String,
+    //    Schedule: String,
+    //    Facilitator: String,
+    //    Dial: String,
+    //    Objective: String
+    //});
+    //forumDetailsSchema.set('collection', 'forumdetails');
+    //var forumdetail = db.model('forumdetails', forumDetailsSchema);
 
     //Announcement Schema
     var announcementSchema = new mongoose.Schema({
@@ -61,7 +63,7 @@ module.exports = function(app) {
         Name: String,
         Demand: String
     });
-    demandSchema.set('collection','demand');
+    demandSchema.set('collection', 'demand');
     var Demand = db.model('demand', demandSchema);
 
     //Forum Scorecard Schema
@@ -178,364 +180,382 @@ module.exports = function(app) {
     var workTracker = db.model('workTracker', workTrackerSchema);
 
 
-
-
 /////////ROUTING & POSTING
+    var forumdetail = require('../routes/index.js');
     app.route("/forumDetailsHeader").get(function (req, res) {
 
-        forumdetail.find({}, function (err, detail) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
-
-                //Establish Array
-                var myvar1 = detail[0];
-                var myvar2 = detail[0]._doc;
-
-                //callback("", task);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(detail))
-
-            }
-        });
-    });
-
-    //app.get("/forumDetailsHeader", function(req, res){
-    //    getforumDetails(res);
-    //})
-
-    app.post("/forumDetailsHeader", function (req, res){
-
-        //New way to create (not working)
-        //forumdetail.create = function (req, res){
-        //    new forumDetail({
-        //        content : req.body.content,
-        //        updated_at: Date.now()
-        //    }).save(function(err, detail, count){
-        //        res.redirect('/');
-        //    });
-        //};
+        //forumdetail.find({}, function (err, detail) {
+        //    if (err) {
+        //        onErr(err, callback);
+        //    } else {
+        //        //mongoose.connection.close();
         //
+        //        //Establish Array
+        //        var myvar1 = detail[0];
+        //        var myvar2 = detail[0]._doc;
+        //
+        //        //callback("", task);
+        //        res.setHeader('Content-Type', 'application/json');
+        //        res.send(JSON.stringify(detail))
+        //
+        //    }
+        //});
+        });
 
-        //Original way to create (not working)
-        forumdetail.create({
-            text : req.body.text,
-            done : false
-        }, function (err, detail){
-            if (err)
-                res.send(err);
 
-            forumdetail.find(function(err, detail){
-                if (err)
-                    res.send(err);
+        //app.route("/forumDetailsHeader").post(function (req, res) {
+        //
+        //    var Tank = mongoose.model('forumdetails', forumDetailsSchema);
+        //
+        //    var small = new Tank({});
+        //    small.save(function (err) {
+        //        if (err) return handleError(err);
+        //        // saved!
+        //    });
+        //
+        //    //forumdetail.find({}, function (err, detail) {
+        //    //    var d = detail;
+        //    //    //if (err) {
+        //    //    //    onErr(err, callback);
+        //    //    //} else {
+        //    //    //    //mongoose.connection.close();
+        //    //    //
+        //    //    //    //Establish Array
+        //    //    //    var myvar1 = detail[0];
+        //    //    //    var myvar2 = detail[0]._doc;
+        //    //    //
+        //    //    //    //callback("", task);
+        //    //    //    res.setHeader('Content-Type', 'application/json');
+        //    //    //    res.send(JSON.stringify(detail))
+        //    //    //
+        //    //    //}
+        //    //});
+        //});
 
-                //res.json(detail);
+        //app.get("/forumDetailsHeader", function(req, res){
+        //    getforumDetails(res);
+        //})
+        //
+        app.post("/forumDetailsHeader", function (req, res) {
+            forumdetail.find({}, function (err, detail) {
+                var result = detail;
+            });
+        //    New way to create (not working)
+            forumdetail.create = function (req, res){
+                new forumdetail({
+                    content : req.body.content,
+                    updated_at: Date.now()
+                }).save(function(err, detail, count){
+                    res.redirect('/');
+                });
+            };
+        });
+
+        app.route("/announcementsHeader").get(function (req, res) {
+
+            Announcement.find({}, function (err, announcement) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
+
+                    //Establish Array
+                    var myvar1 = announcement[0];
+                    var myvar2 = announcement[0]._doc;
+
+                    //callback("", task);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(announcement))
+                }
             });
         });
-    });
 
-    app.route("/announcementsHeader").get(function (req, res) {
+        app.route("/barometerHeader").get(function (req, res) {
 
-        Announcement.find({}, function (err, announcement) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
+            Barometer.find({}, function (err, barometer) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
 
-                //Establish Array
-                var myvar1 = announcement[0];
-                var myvar2 = announcement[0]._doc;
+                    // Not pulling array - hopefully pulling eventually from outside source
+                    //var myvar1 = barometer[0];
+                    //var myvar2 = barometer[0]._doc;
 
-                //callback("", task);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(announcement))
-            }
+                    //console.log(question1.Question1);
+                    //callback("", task);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(barometer))
+                }
+            });
         });
-    });
 
-    app.route("/barometerHeader").get(function (req, res) {
+        app.route("/confirmationHeader").get(function (req, res) {
 
-        Barometer.find({}, function (err, barometer) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
+            Confirmation.find({}, function (err, confirmation) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
 
-                // Not pulling array - hopefully pulling eventually from outside source
-                //var myvar1 = barometer[0];
-                //var myvar2 = barometer[0]._doc;
+                    // Not pulling array - hopefully pulling eventually from outside source
+                    //var myvar1 = confirmation[0];
+                    //var myvar2 = confirmation[0]._doc;
 
-                //console.log(question1.Question1);
-                //callback("", task);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(barometer))
-            }
+                    //console.log(confirmation.Question2);
+                    //callback("", task);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(confirmation))
+                }
+            });
         });
-    });
 
-    app.route("/confirmationHeader").get(function (req, res) {
+        app.route("/demandHeader").get(function (req, res) {
 
-        Confirmation.find({}, function (err, confirmation) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
+            Demand.find({}, function (err, demand) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
 
-                // Not pulling array - hopefully pulling eventually from outside source
-                //var myvar1 = confirmation[0];
-                //var myvar2 = confirmation[0]._doc;
+                    //Establish Array
+                    var myvar1 = demand[0];
+                    var myvar2 = demand[0]._doc;
 
-                //console.log(confirmation.Question2);
-                //callback("", task);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(confirmation))
-            }
+                    //callback("", demand);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(demand))
+                }
+            })
         });
-    });
 
-    app.route("/demandHeader").get(function (req, res) {
+        app.route("/forumScorecardHeader").get(function (req, res) {
 
-        Demand.find({}, function (err, demand) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
+            forumScorecard.find({}, function (err, forumScorecard) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
 
-                //Establish Array
-                var myvar1 = demand[0];
-                var myvar2 = demand[0]._doc;
+                    //Establish Array
+                    var myvar1 = forumScorecard[0];
+                    var myvar2 = forumScorecard[0]._doc;
 
-                //callback("", demand);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(demand))
-            }
-        })
-    });
-
-    app.route("/forumScorecardHeader").get(function (req, res) {
-
-        forumScorecard.find({}, function (err, forumScorecard) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
-
-                //Establish Array
-                var myvar1 = forumScorecard[0];
-                var myvar2 = forumScorecard[0]._doc;
-
-                //callback("", demand);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(forumScorecard))
-            }
-        })
-    });
-
-    app.route("/forumWorkHeader").get(function (req, res) {
-
-        forumWork.findOne({}, function (err, work) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
-                //console.log(work.Owner);
-                //callback("", demand);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({'Sprint' : work.Sprint, 'UserStory' : work.UserStory,
-                                            'Owner' : work.Owner, 'Status' : work.Status,
-                                                'Blockers' : work.Blockers}))
-            }
-        })
-    });
-
-    app.route("/leadershipHeader").get(function (req, res) {
-
-        leadershipScorecard.find({}, function (err, leadership) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
-
-                //Establish Array
-                var myvar1 = leadership[0];
-                var myvar2 = leadership[0]._doc;
-
-                //callback("", demand);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(leadership))
-            }
-        })
-    });
-
-    app.route("/moodHeader").get(function (req, res) {
-
-        Mood.find({}, function (err, mood) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
-
-                //Establish Array
-                var myvar = mood[0];
-                var myvar2 = mood[0]._doc;
-
-                //callback("", task);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(mood))
-            }
+                    //callback("", demand);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(forumScorecard))
+                }
+            })
         });
-    });
 
-    app.route("/officeHeader").get(function (req, res) {
+        app.route("/forumWorkHeader").get(function (req, res) {
 
-        outOfOffice.find({}, function (err, office) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
-
-                //Establish Array
-                var myvar1 = office[0];
-                var myvar2 = office[0]._doc;
-
-                //callback("", demand);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(office))
-            }
-        })
-    });
-
-    app.route("/parkingLotHeader").get(function (req, res) {
-
-        parkingLot.findOne({}, function (err, parkingLot) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
-
-                // Not pulling array - hopefully pulling eventually from outside source
-                //var myvar1 = parkingLot[0];
-                //var myvar2 = parkingLot[0]._doc;
-
-                //callback("", demand);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(parkingLot))
-            }
-        })
-    });
-
-    app.route("/recognitionHeader").get(function (req, res) {
-
-        Recognition.find({}, function (err, recognition) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
-
-                //Establish Array
-                var myvar1 = recognition[0];
-                var myvar2 = recognition[0]._doc;
-
-                //callback("", task);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(recognition))
-            }
+            forumWork.findOne({}, function (err, work) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
+                    //console.log(work.Owner);
+                    //callback("", demand);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify({
+                        'Sprint': work.Sprint, 'UserStory': work.UserStory,
+                        'Owner': work.Owner, 'Status': work.Status,
+                        'Blockers': work.Blockers
+                    }))
+                }
+            })
         });
-    });
 
-    app.route("/skillsGridHeader").get(function (req, res) {
+        app.route("/leadershipHeader").get(function (req, res) {
 
-        skillsGrid.findOne({}, function (err, skillsGrid) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
+            leadershipScorecard.find({}, function (err, leadership) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
 
-                // Not pulling array - hopefully pulling eventually from outside source
-                //var myvar1 = skillsGrid[0];
-                //var myvar2 = skillsGrid[0]._doc;
+                    //Establish Array
+                    var myvar1 = leadership[0];
+                    var myvar2 = leadership[0]._doc;
 
-                //callback("", task);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(skillsGrid))
-            }
+                    //callback("", demand);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(leadership))
+                }
+            })
         });
-    });
 
-    app.route("/tasksHeader").get(function (req, res) {
+        app.route("/moodHeader").get(function (req, res) {
 
-        Tasks.find({}, function (err, tasks) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
+            Mood.find({}, function (err, mood) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
 
-                //Establish Array
-                var myvar = tasks[0];
-                var myvar2= tasks[0]._doc;
+                    //Establish Array
+                    var myvar = mood[0];
+                    var myvar2 = mood[0]._doc;
 
-                //callback("", task);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(tasks))
-            }
+                    //callback("", task);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(mood))
+                }
+            });
         });
-    });
 
-    app.route("/wiloHeader").get(function (req, res) {
+        app.route("/officeHeader").get(function (req, res) {
 
-        WILO.findOne({}, function (err, wilo) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
+            outOfOffice.find({}, function (err, office) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
 
-                // Not pulling array - hopefully pulling eventually from outside source
-                //var myvar1 = wilo[0];
-                //var myvar2 = wilo[0]._doc;
+                    //Establish Array
+                    var myvar1 = office[0];
+                    var myvar2 = office[0]._doc;
 
-                //callback("", task);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(wilo))
-            }
+                    //callback("", demand);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(office))
+                }
+            })
         });
-    });
 
-    app.route("/workTrackerHeader").get(function (req, res) {
+        app.route("/parkingLotHeader").get(function (req, res) {
 
-        workTracker.findOne({}, function (err, workTracker) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
+            parkingLot.findOne({}, function (err, parkingLot) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
 
-                // Not pulling array - hopefully pulling eventually from outside source
-                //var myvar1 = workTracker[0];
-                //var myvar2 = workTracker[0]._doc;
+                    // Not pulling array - hopefully pulling eventually from outside source
+                    //var myvar1 = parkingLot[0];
+                    //var myvar2 = parkingLot[0]._doc;
 
-                //callback("", task);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(workTracker))
-            }
+                    //callback("", demand);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(parkingLot))
+                }
+            })
         });
-    });
 
-    app.route("/workSummaryHeader").get(function (req, res) {
+        app.route("/recognitionHeader").get(function (req, res) {
 
-        workSummary.findOne({}, function (err, workSummary) {
-            if (err) {
-                onErr(err, callback);
-            } else {
-                //mongoose.connection.close();
+            Recognition.find({}, function (err, recognition) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
 
-                // Not pulling array - hopefully pulling eventually from outside source
-                //var myvar1 = workSummary[0];
-                //var myvar2 = workSummary[0]._doc;
+                    //Establish Array
+                    var myvar1 = recognition[0];
+                    var myvar2 = recognition[0]._doc;
 
-                //callback("", task);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(workSummary))
-            }
+                    //callback("", task);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(recognition))
+                }
+            });
         });
-    });
-};
+
+        app.route("/skillsGridHeader").get(function (req, res) {
+
+            skillsGrid.findOne({}, function (err, skillsGrid) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
+
+                    // Not pulling array - hopefully pulling eventually from outside source
+                    //var myvar1 = skillsGrid[0];
+                    //var myvar2 = skillsGrid[0]._doc;
+
+                    //callback("", task);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(skillsGrid))
+                }
+            });
+        });
+
+        app.route("/tasksHeader").get(function (req, res) {
+
+            Tasks.find({}, function (err, tasks) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
+
+                    //Establish Array
+                    var myvar = tasks[0];
+                    var myvar2 = tasks[0]._doc;
+
+                    //callback("", task);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(tasks))
+                }
+            });
+        });
+
+        app.route("/wiloHeader").get(function (req, res) {
+
+            WILO.findOne({}, function (err, wilo) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
+
+                    // Not pulling array - hopefully pulling eventually from outside source
+                    //var myvar1 = wilo[0];
+                    //var myvar2 = wilo[0]._doc;
+
+                    //callback("", task);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(wilo))
+                }
+            });
+        });
+
+        app.route("/workTrackerHeader").get(function (req, res) {
+
+            workTracker.findOne({}, function (err, workTracker) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
+
+                    // Not pulling array - hopefully pulling eventually from outside source
+                    //var myvar1 = workTracker[0];
+                    //var myvar2 = workTracker[0]._doc;
+
+                    //callback("", task);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(workTracker))
+                }
+            });
+        });
+
+        app.route("/workSummaryHeader").get(function (req, res) {
+
+            workSummary.findOne({}, function (err, workSummary) {
+                if (err) {
+                    onErr(err, callback);
+                } else {
+                    //mongoose.connection.close();
+
+                    // Not pulling array - hopefully pulling eventually from outside source
+                    //var myvar1 = workSummary[0];
+                    //var myvar2 = workSummary[0]._doc;
+
+                    //callback("", task);
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(workSummary))
+                }
+            });
+        });
+    };
+
+

@@ -17,9 +17,13 @@ app.controller('forumDetailsCtrl', ['$scope', '$http',
         //    details.set('Name', req.body.content);
         //}
 
+        $scope.createforumDetails = function(){
             $http.post('/forumDetailsHeader').then(function(data) {
                 $scope.fourmDetails = {};
                 $scope.details = data;
             });
+        }
+
+
 
     }]);

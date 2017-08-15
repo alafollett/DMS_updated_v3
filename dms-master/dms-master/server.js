@@ -6,6 +6,8 @@ var mongoose       = require('mongoose');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 
+var routes = require( './routes' );
+
 
 var port = process.env.PORT || 9080; // set our port
 // mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
@@ -24,6 +26,13 @@ app.use(express.static(__dirname + '/public')); // set the static files location
 
 // routes ==================================================
 require('./app/routes')(app); // pass our application into our routes
+
+// Routes (New Idea on how to post)
+//app.get(  '/',            routes.index );
+app.post( '/create',      routes.create );
+//app.get(  '/destroy/:id', routes.destroy );
+//app.get(  '/edit/:id',    routes.edit );
+//app.post( '/update/:id',  routes.update );
 
 // start app ===============================================
 app.listen(port);
